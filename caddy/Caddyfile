@@ -1,21 +1,3 @@
-# ── Globale Optionen ────────────────────────────────────────────────────────
-{
-    email admin@{$DOMAIN}          # Let's Encrypt Kontakt-Mail
-    # Cloudflare DNS-Challenge (falls Wildcard-Cert gewünscht):
-    # acme_dns cloudflare {$CF_API_TOKEN}
-}
-
-# ── Hello World ─────────────────────────────────────────────────────────────
-hello.{$DOMAIN} {
-    reverse_proxy hello-world:8000
-}
-
-# ── Rezept-Finder (aktivieren wenn App deployt) ──────────────────────────────
-# rezepte.{$DOMAIN} {
-#     reverse_proxy rezept-finder:8000
-# }
-
-# ── Catch-All: Root-Domain → Hello World ────────────────────────────────────
 {$DOMAIN} {
     reverse_proxy hello-world:8000
 }
