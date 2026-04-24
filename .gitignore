@@ -1,0 +1,24 @@
+# Secrets – NIE ins Repo!
+.env
+.env.*
+!.env.example
+
+# Docker
+.docker/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

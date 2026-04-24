@@ -1,0 +1,40 @@
+services:
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - web
+
+  # ── Hello World (Test-App) ─────────────────────────────────────────────────
+  hello-world:
+    build: ./apps/hello-world
+    restart: unless-stopped
+    networks:
+      - web
+
+  # ── Rezept-Finder (auskommentiert bis App fertig) ─────────────────────────
+  # rezept-finder:
+  #   build: ./apps/rezept-finder
+  #   restart: unless-stopped
+  #   environment:
+  #     - SUPABASE_URL=${SUPABASE_URL}
+  #     - SUPABASE_KEY=${SUPABASE_KEY}
+  #   networks:
+  #     - web
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web:
+    driver: bridge
